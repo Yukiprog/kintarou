@@ -4,10 +4,7 @@ import time
 def execute():
     # Selenum用ドライバ格納パス
     driver_path = r"C:\Users\yuki\PycharmProjects\kintarou\geckodriver\geckodriver.exe"
-    enter_company = ""
-    enter_username = ""
-    enter_password = ""
-
+    enter_data = ["", "", ""]
 
     # seleniumを使用してgoogle検索画面から検索を実行する
     url = "https://www.kinta.ne.jp/kinta2/web_sp/login.aspx"
@@ -17,20 +14,21 @@ def execute():
     browser = webdriver.Firefox(executable_path=driver_path)
     browser.get(url)
 
-    enter_info(enter_company,enter_username,enter_password)
+    enter_info(enter_data)
 
     company = browser.find_element_by_id('txtCode')
     username = browser.find_element_by_id('txtEmpCode')
     password = browser.find_element_by_id('txtPw')
 
-    company.send_keys(enter_company)
-    username.send_keys(enter_username)
-    password.send_keys(enter_password)
+    company.send_keys(enter_data[0])
+    username.send_keys(enter_data[1])
+    password.send_keys(enter_data[2])
 
+    time.sleep(5)
     browser.close()
 
-def enter_info(enter_company,enter_username,enter_password):
+def enter_info(enter_data):
     from getpass import getpass
-    enter_company = input("comapany name is:")
-    enter_username = input("username is:")
-    enter_password = getpass("password is:")
+    enter_data[0] = input("comapany name is:")
+    enter_data[1] = input("username is:")
+    enter_data[2] = getpass("password is:")
