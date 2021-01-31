@@ -1,6 +1,4 @@
 from selenium import webdriver
-import disp.top as top
-import time
 
 def execute():
     # Selenum用ドライバ格納パス
@@ -15,7 +13,7 @@ def execute():
     browser = webdriver.Firefox(executable_path=driver_path)
     browser.get(url)
 
-    enter_info(enter_data)
+    # enter_info(enter_data)
 
     company = browser.find_element_by_id('txtCode')
     username = browser.find_element_by_id('txtEmpCode')
@@ -27,13 +25,5 @@ def execute():
 
     password.submit()
 
-    top.execute()
-
     # time.sleep(5)
     # browser.close()
-
-def enter_info(enter_data):
-    from getpass import getpass
-    enter_data[0] = input("comapany name is: ")
-    enter_data[1] = input("username is: ")
-    enter_data[2] = getpass("password is: ")
